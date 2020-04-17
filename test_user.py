@@ -25,6 +25,9 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.user.email,"dmbugua66@gmail.com")
         self.assertEqual(self.user.description,"Slack Account")
 
+    def test_save_contact(self):
+        self.user.save_contact()
+        self.assertEqual(len(User.userList),1)
 
 if __name__=="__main__":
     unittest.main()

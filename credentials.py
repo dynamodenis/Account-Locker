@@ -6,4 +6,8 @@ class Credentials:
         self.password=password
         self.details=details
 
-new=Credentials("dynamodenis","987654321","hello world")
+        new=Credentials("dynamodenis","987654321","hello world")
+
+
+    # def save_contact(self):
+    #     #this saves a new contact
