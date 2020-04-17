@@ -9,6 +9,6 @@ class User:
         self.description=description
        
             
-    def save_contact(self):
+    def save_user(self):
         #SAVES A NEW CONTACT
         User.userList.append(self)

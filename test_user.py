@@ -25,9 +25,26 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.user.email,"dmbugua66@gmail.com")
         self.assertEqual(self.user.description,"Slack Account")
 
-    def test_save_contact(self):
-        self.user.save_contact()
+    def test_save_user(self):
+        self.user.save_user()
         self.assertEqual(len(User.userList),1)
+
+    def tearDown(self):
+        '''
+            tearDown method that does clean up after each test case has run.
+        '''
+        User.userList=[]
+
+
+    def test_save_multiple_user(self):
+        '''
+            test_save_multiple_contact to check if we can save multiple contact
+            objects to our contact_list
+        '''
+        self.user.save_user()
+        newUser=User('Dnaiel','Ndambukki','123456789','dmb@gmail.com','Snapchat password')
+        newUser.save_user()
+        self.assertEqual(len(User.userList),2)
 
 if __name__=="__main__":
     unittest.main()
