@@ -46,5 +46,13 @@ class TestUser(unittest.TestCase):
         newUser.save_user()
         self.assertEqual(len(User.userList),2)
 
+    def test_find_by_password(self):
+        self.user.save_user()
+        newUser=User('Dnaiel','Ndambukki','123456789','dmb@gmail.com','Snapchat password')
+        newUser.save_user()
+        
+        find_user=User.find_by_password('123456789')
+        self.assertEqual(find_user.password,newUser.password)
+
 if __name__=="__main__":
     unittest.main()

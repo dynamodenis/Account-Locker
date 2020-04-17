@@ -12,3 +12,9 @@ class User:
     def save_user(self):
         #SAVES A NEW CONTACT
         User.userList.append(self)
+    @classmethod
+    def find_by_password(cls,password):
+        #FINDS THE USER USING PASSWORD
+        for user in cls.userList:
+            if user.password==password:
+                return  user
