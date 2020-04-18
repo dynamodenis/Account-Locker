@@ -12,9 +12,16 @@ class User:
     def save_user(self):
         #SAVES A NEW CONTACT
         User.userList.append(self)
+
+    def delete_user(self):
+        #DELETES A USER
+        User.userList.remove(self)
+
     @classmethod
     def find_by_password(cls,password):
         #FINDS THE USER USING PASSWORD
         for user in cls.userList:
             if user.password==password:
                 return  user
+
+    
