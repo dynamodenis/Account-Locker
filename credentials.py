@@ -22,10 +22,10 @@ class Credentials:
 
         return cls.credentials_list
     @classmethod
-    def find_by_username(cls,username):
+    def find_by_password(cls,password):
         #FINDS THE USER USING PASSWORD
         for user in cls.credentials_list:
-            if user.username==username:
+            if user.password==password:
                 return  user
 
     @classmethod

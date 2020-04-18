@@ -30,7 +30,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(len(User.userList),1)
 
     def tearDown(self):
-        '''
+        '''()
             tearDown method that does clean up after each test case has run.
         '''
         User.userList=[]
