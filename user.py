@@ -24,4 +24,10 @@ class User:
             if user.password==password:
                 return  user
 
-    
+    @classmethod
+    def user_exists(cls,first_name):
+        for user in User.userList:
+            user.first_name=first_name
+            return True
+
+        return False
