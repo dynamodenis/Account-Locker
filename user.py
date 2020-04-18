@@ -18,6 +18,10 @@ class User:
         User.userList.remove(self)
 
     @classmethod
+    def display_users(cls):
+
+        return cls.userList
+    @classmethod
     def find_by_password(cls,password):
         #FINDS THE USER USING PASSWORD
         for user in cls.userList:
