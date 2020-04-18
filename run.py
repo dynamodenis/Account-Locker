@@ -21,3 +21,23 @@ def search_user(first_name):
 
 def display_users():
     User.display_users()
+
+#CREDENTIALS
+def create_credentials(username,password,email,details):
+    newCredential=Credentials(username,password,email,details)
+    return newCredential
+
+def save_credential(user):
+    user.save_credentials()
+
+def delete_credentials(user):
+    user.delete_credentials()
+
+def find_credential(username):
+    Credentials.find_by_username(username)
+
+def search_user(username):
+    Credentials.user_exists(username)
+
+def display_users():
+    Credentials.display_users()

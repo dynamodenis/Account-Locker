@@ -1,10 +1,11 @@
 #!/usr/bin/env python3.6
 class Credentials:
     credentials_list=[]
-    def __init__(self,username,password,details):
+    def __init__(self,username,password,email,details):
         self.username=username
         self.password=password
         self.details=details
+        self.email=email
 
         
 

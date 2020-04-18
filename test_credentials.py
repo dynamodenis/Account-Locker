@@ -13,7 +13,7 @@ class TestCredentials(unittest.TestCase):
         '''
         Set up method to run before each test cases.
          '''
-        self.user=Credentials("dynamodenis","987654321","hello world")
+        self.user=Credentials("dynamodenis","987654321",'dmbugus@gmail.com',"hello world")
 
 
     def test_init_(self):
@@ -22,6 +22,7 @@ class TestCredentials(unittest.TestCase):
         '''
         self.assertEqual(self.user.username,"dynamodenis")
         self.assertEqual(self.user.password,"987654321")
+        self.assertEqual(self.user.email,"dmbugus@gmail.com")
         self.assertEqual(self.user.details,"hello world")
 
 
@@ -42,7 +43,7 @@ class TestCredentials(unittest.TestCase):
             objects to our contact_list
         '''
         self.user.save_credentials()
-        newUser=Credentials('mwangijohn','000000000','twitter account')
+        newUser=Credentials('mwangijohn','000000000','much@sept.com','twitter account')
         newUser.save_credentials()
         self.assertEqual(len(Credentials.credentials_list),2)
 
