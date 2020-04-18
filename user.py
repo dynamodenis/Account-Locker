@@ -10,7 +10,7 @@ class User:
        
             
     def save_user(self):
-        #SAVES A NEW CONTACT
+        #SAVES A NEW USER
         User.userList.append(self)
 
     def delete_user(self):
