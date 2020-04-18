@@ -45,20 +45,22 @@ class TestCredentials(unittest.TestCase):
         self.user.save_credentials()
         newUser=Credentials('mwangijohn','000000000','much@sept.com','twitter account')
         newUser.save_credentials()
-        self.assertEqual(len(Credentials.credentials_list),2)
+        denis=Credentials('mwangijohn','000000000','much@sept.com','twitter account')
+        denis.save_credentials()
+        self.assertEqual(len(Credentials.credentials_list),3)
 
 
-    def test_find_by_username(self):
+    def test_find_by_password(self):
         self.user.save_credentials()
-        newUser=Credentials('mwangijohn','000000000','twitter account')
+        newUser=Credentials('mwangijohn','000000000','much@sept.com','twitter account')
         newUser.save_credentials()
         
-        find_user=Credentials.find_by_username('dynamodenis')
-        self.assertEqual(find_user.username,self.user.username)
+        find_user=Credentials.find_by_password('987654321')
+        self.assertEqual(find_user.password,self.user.password)
 
     def test_delete_credentials(self):
         self.user.save_credentials()
-        newUser=Credentials('mwangijohn','000000000','twitter account')
+        newUser=Credentials('mwangijohn','000000000','much@sept.com','twitter account')
         newUser.save_credentials()
 
         self.user.delete_credentials()
@@ -66,7 +68,7 @@ class TestCredentials(unittest.TestCase):
 
     def test_user_exists(self):
         self.user.save_credentials()
-        newUser=Credentials('mwangijohn','000000000','twitter account')
+        newUser=Credentials('mwangijohn','000000000','much@sept.com','twitter account')
         newUser.save_credentials()
 
         credentials_exist=Credentials.user_exists("dynamodenis")

@@ -13,53 +13,39 @@ def save_users(user):
 def delete_user(user):
     user.delete_user()
 
-def find_user(password):
-    User.find_by_password(password)
-
-def search_user(first_name):
-    User.user_exists(first_name)
-
-def display_users():
-    User.display_users()
-
 #CREDENTIALS
 def create_credentials(username,password,email,details):
-    newCredential=Credentials(username,password,email,details)
-    return newCredential
+    new_credential=Credentials(username,password,email,details)
+    return new_credential
 
-def save_credential(user):
-    user.save_credentials()
+def save_credentials(credentials):
+    credentials.save_credentials()
 
-def delete_credentials(user):
-    user.delete_credentials()
+def delete_credentials(credentials):
+    credentials.delete_credentials()
 
 def find_credential(password):
-    Credentials.find_by_password(password)
+    return Credentials.find_by_password(password)
 
 def search_user(username):
-    Credentials.user_exists(username)
+    return Credentials.user_exists(username)
 
 def display_credentials():
-    Credentials.display_users()
+    return Credentials.display_users()
 def main():
-    print('''Hello use the codes below to continue:
-             CU--create user credentials.
-             SC--to save ready credentials.
-             DC--to display saved credentials.
-             DEL--to delete unused credentials.
-             EX--to exit''')
-    
     while True:
         print('''Hello use the codes below to continue:
              CU--create user credentials.
              SC--to save ready credentials.
              GET--to search for your credentials.
+             DC--to display saved credentials.
              DEL--to delete unused credentials.
              EX--to exit''')
         print('Type code to continue:')
         code=input().lower()
 
         if code=='cu':
+            #CREATES NEW USER CREDENTIAL
             print('First Name:')
             first_name=input()
 
@@ -82,6 +68,7 @@ def main():
             print('\n')
 
         elif code=='sc':
+            #CREATES CREDENTIALS AND SAVES THEM
             print('Please fill the details below to save your credentials:')
             print('Your Username:')
             username=input()
@@ -95,14 +82,83 @@ def main():
             print('Details:')
             details=input()
 
-            save_credential(create_credentials(username,password,email,details))
+            save_credentials(create_credentials(username,password,email,details))
             print('\n')
             print(f'{username} credentials successfully saved.')
             print('\n')
 
+
+        elif code=='dc':
+            #DISPLAYS THE USERS TOTAL CREDENTALS
+            if display_credentials():
+                for credential in display_credentials():
+                    print('A list of all credentials.')
+                    print('-'*30)
+                    print(f'Username: {credential.username} Password:{credential.password} Email:{credential.email} Details: {credential.details}')
+            else:
+                print('Sorry you dont have any saved credentials.')
+
+
         #DISPLAYS ALL THE USERS SAVED CREDENTIALS
         elif code=='get':
-            print('To retrieve your credentials type ')
+            print('To retrieve your credential type username and password')
+            print('Type username:')
+            username=input()
+            print('Type password:')
+            password=input()
+
+            if search_user(username):
+                user_found=find_credential(password)
+                print(f'Here is your credential {user_found.username}')
+                print('-'*20)
+                print(f'Username: {user_found.username}')
+                print(f'Password: {user_found.password}')
+                print(f'Email:     {user_found.email}')
+                print(f'Details:   {user_found.details}')
+                print('\n')
+
+            else:
+                print("Sorry credentials not found!")
+                print('\n')
+
+        elif code=='del':
+            #DELETES A CREDENTIAL
+            print('Please type in username and password to delete credential.')
+            print('Type username to delete.')
+            username=input()
+            print('Type password:')
+            password=input()
+
+            if search_user(username):
+                user_found=find_credential(password)
+                print(f'Here is your credential {user_found.username}')
+                print('-'*20)
+                print(f'Username: {user_found.username} Password: {user_found.password} Email: {user_found.email} Details: {user_found.details}')
+                print('\n')
+                print('This credential will be deleted Y/N')
+                y=input().lower()
+                if y=='y':
+                    delete=delete_credentials(user_found)
+                    print('\n')
+                    print(f'{user_found.username} credential deleted')
+                    print('\n')
+
+                else:
+                    print('Aborted! Thank you!')
+                    print('\n')
+            else:
+                print("Sorry credentials not found!")
+                print('\n') 
+
+        elif code=='ex':
+            print('\n')
+            print('Thank You! Bye.....')
+            break
+
+        else:
+            print('\n')
+            print('Unknown input use the code provided')
+            
 
 
 
