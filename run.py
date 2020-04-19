@@ -1,6 +1,8 @@
 #!/usr/bin/env python3.6
 from user import User
 from credentials import Credentials
+import string
+import random
 
 #USERS
 def create_user(fname,lname,password,email,details):
@@ -52,8 +54,27 @@ def main():
             print('Second Name:')
             last_name=input()
 
-            print('Password:')
-            password=input()
+            print('For Password: type AUTO --to auto generate or INPUT --to generate your own password!')
+            print("Type AUTO or INPUT")
+            password_generate=input().lower()
+
+            #THIS AUTO GENERATES
+            if password_generate=='auto':
+                print('Type password length!')
+                size=int(input())
+                def password(size=size,chars=string.ascii_uppercase+string.digits+string.ascii_lowercase):
+                    return ''.join(random.choice(chars) for _ in range(size))
+                password=password()
+                print(f"Congratulations here is your password: {password}")
+                print('-'*40)
+
+            elif password_generate=='input':
+                print('Type your password:')
+                password=input()
+
+            else:
+                print("-----Unexpected input please use provided options------")
+                
 
             print('Email:')
             email=input()
@@ -73,6 +94,7 @@ def main():
             print('Your Username:')
             username=input()
 
+            
             print('Password:')
             password=input()
 
