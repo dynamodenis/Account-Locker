@@ -1,4 +1,5 @@
 #!/usr/bin/env python3.6
+import pyperclip
 class Credentials:
     credentials_list=[]
     def __init__(self,username,password,email,details):
@@ -36,5 +37,8 @@ class Credentials:
 
         return False
 
-    # def save_contact(self):
-    #     #this saves a new contact
+    #COPY PASTING TO CLIPBOARD
+    @classmethod
+    def copy_credential(cls,password):
+        found_credential=Credentials.find_by_password(password)
+        pyperclip.copy(found_credential.username)

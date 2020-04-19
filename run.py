@@ -3,7 +3,7 @@ from user import User
 from credentials import Credentials
 import string
 import random
-
+import pyperclip
 #USERS
 def create_user(fname,lname,password,email,details):
     newUser=User(fname,lname,password,email,details)
@@ -25,6 +25,9 @@ def save_credentials(credentials):
 
 def delete_credentials(credentials):
     credentials.delete_credentials()
+
+def copy_credentials(credential):
+    credential.copy_credentials()
 
 def find_credential(password):
     return Credentials.find_by_password(password)
@@ -117,6 +120,12 @@ def main():
                     print('A list of all credentials.')
                     print('-'*30)
                     print(f'Username: {credential.username} Password:{credential.password} Email:{credential.email} Details: {credential.details}')
+                    print('\n')
+                    print('Type COPY --to copy credentials')
+                    copy=input().lower()
+
+                    if copy=='copy':
+                        copycred=copy_credentials(credential).pyperclip.paste()
             else:
                 print('Sorry you dont have any saved credentials.')
 
@@ -138,7 +147,7 @@ def main():
                 print(f'Email:     {user_found.email}')
                 print(f'Details:   {user_found.details}')
                 print('\n')
-
+                
             else:
                 print("Sorry credentials not found!")
                 print('\n')

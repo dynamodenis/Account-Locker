@@ -1,6 +1,7 @@
 #!/usr/bin/env python3.6
 import unittest
 from credentials import Credentials
+import pyperclip
 
 class TestCredentials(unittest.TestCase):
     '''
@@ -78,6 +79,15 @@ class TestCredentials(unittest.TestCase):
         display=Credentials.display_users()
         self.assertEqual(display,Credentials.credentials_list)
 
+
+    #TEST THE PYPERCLIP
+    def test_pyperclip(self):
+        '''
+        Test to confirm that we are copying the credentials from a found credentials list
+        '''
+        self.user.save_credentials()
+        Credentials.copy_credential('987654321')
+        self.assertEqual(self.user.username,pyperclip.paste())
 
 if __name__=="__main__":
     unittest.main()
