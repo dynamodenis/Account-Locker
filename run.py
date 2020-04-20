@@ -15,6 +15,9 @@ def save_users(user):
 def delete_user(user):
     user.delete_user()
 
+def display_users():
+    return User.display_users()
+
 #CREDENTIALS
 def create_credentials(username,password,email,details):
     new_credential=Credentials(username,password,email,details)
@@ -26,8 +29,8 @@ def save_credentials(credentials):
 def delete_credentials(credentials):
     credentials.delete_credentials()
 
-def copy_credentials(credential):
-    credential.copy_credentials()
+def copy_credentials(password):
+    password.copy_credential()
 
 def find_credential(password):
     return Credentials.find_by_password(password)
@@ -119,15 +122,23 @@ def main():
                 for credential in display_credentials():
                     print('A list of all credentials.')
                     print('-'*30)
-                    print(f'Username: {credential.username} Password:{credential.password} Email:{credential.email} Details: {credential.details}')
+                    print(f'Username: {user.first_name} {user.last_name}, Password:{user.password} ,Email:{user.email} ,Details: {user.descrption}')
                     print('\n')
-                    print('Type COPY --to copy credentials')
-                    copy=input().lower()
 
-                    if copy=='copy':
-                        copycred=copy_credentials(credential).pyperclip.paste()
+            else:
+                print('Sorry you dont have any saved details.')
+
+            if display_users():
+                for user in display_users():
+                    print('A list of your credential.')
+                    print('-'*30)
+                    print(f'Username: {credential.username}, Password:{credential.password} ,Email:{credential.email} ,Details: {credential.details}')
+                    print('\n')
+
             else:
                 print('Sorry you dont have any saved credentials.')
+
+
 
 
         #DISPLAYS ALL THE USERS SAVED CREDENTIALS
